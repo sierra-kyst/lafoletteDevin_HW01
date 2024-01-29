@@ -4,52 +4,29 @@ using UnityEngine;
 
 public class RapidFirePowerup : PowerUpBase
 {
-    private TurretController turret;
-    private bool poweredUp = false;
-    private int powerUpTimer = 0;
-    private int spawnTimer = 0;
-    private bool startSpawnTimer = true;
+    public TurretController turt;
     private void Start()
     {
-
-        gameObject.SetActive(false);
-    }
-    private void Update()
-    {
-        if(startSpawnTimer == true)
-        {
-            spawnTimer++;
-            if(spawnTimer >= 1000)
-            {
-                gameObject.SetActive(true);
-                startSpawnTimer = false;
-                spawnTimer = 0;
-            }
-        }
-        if(poweredUp == true)
-        {
-            powerUpTimer++;
-            if (powerUpTimer >= PowerupDuration)
-            {
-                PowerDown();
-                poweredUp = false;
-                powerUpTimer = 0;
-            }
-        }
+        GameObject.Find("TurretController").GetComponent<TurretController>();
+        _collider = GetComponent<Collider>();
+        Debug.Log("Rate of Fire: " + turt.FireCooldown);
     }
     protected override void OnHit()
     {
         PowerUp();
-        gameObject.SetActive(false);
-        startSpawnTimer = true;
     }
     protected override void PowerUp()
     {
-        turret.FireCooldown = 0.25f;
+        turt.FireCooldown = .25f;
+        _artToDisable.SetActive(false);
+        _collider.enabled = false;
         poweredUp = true;
+        Debug.Log("Rate of Fire: " + turt.FireCooldown);
     }
     protected override void PowerDown()
     {
-        turret.FireCooldown = 0.5f;
+        turt.FireCooldown = .5f;
+        Debug.Log("Rate of Fire: " + turt.FireCooldown);
+        gameObject.SetActive(false);
     }
 }

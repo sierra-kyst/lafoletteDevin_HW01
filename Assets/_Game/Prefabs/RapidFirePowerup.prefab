@@ -129,6 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0564b8e93d818d04c8d0baae8692755a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PowerupDuration: 2000
+  _artToDisable: {fileID: 1912889836272533140}
+  turt: {fileID: 6605071964616077438, guid: 96989888d4ecf674591dff8fa6e87afa, type: 3}
 --- !u!135 &-778142877282024130
 SphereCollider:
   m_ObjectHideFlags: 0
